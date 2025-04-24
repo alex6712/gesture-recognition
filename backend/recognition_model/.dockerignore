@@ -5,7 +5,6 @@ __pycache__/
 
 # .env files
 *.env
-construct_prodenv.sh
 
 # Virtual environmnets
 venv/
@@ -18,3 +17,9 @@ venv/
 # GIT
 .git/
 .gitignore
+
+# Datasets
+datasets/
+*.weights
+*.onnx
+*.pt
