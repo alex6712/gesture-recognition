@@ -1,0 +1,15 @@
+# JetBrains workspace
+/.idea
+
+# Virtual environments
+/.venv
+
+# .env files
+**.env
+construct_prodenv.sh
+
+# PyCache
+**/__pycache__
+
+# VSCode workspace
+**/.vscode

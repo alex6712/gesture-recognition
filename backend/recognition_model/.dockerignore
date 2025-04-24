@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyo
+*.pyd
+
+# .env files
+*.env
+
+# Virtual environmnets
+venv/
+.venv/
+
+# Workspaces
+.idea/
+.vscode/
+
+# GIT
+.git/
+.gitignore
+
+# Datasets
+datasets/
+*.weights
+*.onnx
+*.pt
