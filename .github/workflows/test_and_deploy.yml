@@ -77,7 +77,9 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p ~/gesture_recognition"
   
           rsync -az --delete \
-            --exclude={"LICENSE", "README.md", ".github"} \
+            --exclude="LICENSE" \
+            --exclude="README.md" \
+            --exclude=".github/*" \
             ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/gesture_recognition
 
       - name: Deploy with Docker Compose
