@@ -2,16 +2,16 @@ services:
   recognition_api:
     extends:
       service: recognition_api
-      file: ./backend/recognition_api/recognition-api-compose.yml
+      file: ./backend/recognition_api/docker-compose.yml
     networks:
       - recognition_net
 
-  recognition_model:
-    extends:
-      service: recognition_model
-      file: ./backend/recognition_model/recognition-model-compose.yml
-    networks:
-      - recognition_net
+#  recognition_model:
+#    extends:
+#      service: recognition_model
+#      file: ./backend/recognition_model/docker-compose.yml
+#    networks:
+#      - recognition_net
 
 networks:
   recognition_net:
