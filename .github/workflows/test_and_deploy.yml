@@ -86,6 +86,7 @@ jobs:
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
             cd ~/gesture_recognition
+            cat ~/gesture_recognition/backend/recognition_api/.env
             docker compose down --remove-orphans
             docker compose build --pull
             docker compose up -d --wait
