@@ -3,7 +3,6 @@ services:
     extends:
       service: recognition_api
       file: ./backend/recognition_api/recognition-api-compose.yml
-    working_dir: ./backend/recognition_api
     networks:
       - recognition_net
 
@@ -11,7 +10,6 @@ services:
     extends:
       service: recognition_model
       file: ./backend/recognition_model/recognition-model-compose.yml
-    working_dir: ./backend/recognition_model
     networks:
       - recognition_net
 
