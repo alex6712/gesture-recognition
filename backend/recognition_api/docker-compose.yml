@@ -7,5 +7,6 @@ services:
     env_file: .env
     environment:
       - BACKEND_PORT=${BACKEND_PORT}
+      - HOST_PORT=${HOST_PORT}
     ports:
-      - "${BACKEND_PORT}:${BACKEND_PORT}"
+      - "127.0.0.1:${HOST_PORT}:${BACKEND_PORT}"

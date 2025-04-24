@@ -4,8 +4,9 @@
 # Virtual environments
 /.venv
 
-# .env file
+# .env files
 **.env
+construct_prodenv.sh
 
 # PyCache
 **/__pycache__
