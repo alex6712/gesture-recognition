@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "gesture-recognition-api"
+version = "0.1.1"
+description = "RESTful API модели распознавания жестов."
+authors = ["alex6712 <alexeivanyukov@yandex.ru>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["standard"], version = "^0.115.12"}
+pydantic-settings = "^2.9.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+flake8 = "^7.2.0"
+pytest = "^8.3.5"
+pytest-cov = "^6.1.1"
+pytest-asyncio = "^0.26.0"
+aiosqlite = "^0.21.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

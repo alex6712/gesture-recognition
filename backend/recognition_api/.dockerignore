@@ -1,0 +1,20 @@
+# Pyrhon cache
+__pycache__/
+*.pyo
+*.pyd
+
+# .env files
+*.env
+construct_prodenv.sh
+
+# Virtual environmnets
+venv/
+.venv/
+
+# Workspaces
+.idea/
+.vscode/
+
+# GIT
+.git/
+.gitignore
