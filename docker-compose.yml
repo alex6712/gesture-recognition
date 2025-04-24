@@ -1,0 +1,28 @@
+version: '3.12'
+
+services:
+  recognition_api:
+    build: ./backend/recognition_api
+    container_name: recognition_api
+    env_file: ./backend/recognition_api/.env
+    environment:
+      - BACKEND_PORT=${BACKEND_PORT}
+      - HOST_PORT=${HOST_PORT}
+    ports:
+      - "127.0.0.1:${HOST_PORT}:${BACKEND_PORT}"
+    depends_on:
+      - recognition_model
+    networks:
+      - recognition_net
+
+  recognition_model:
+    build: ./backend/recognition_model
+    container_name: recognition_model
+    ports:
+      - "5000:5000"
+    networks:
+      - recognition_net
+
+networks:
+  recognition_net:
+    driver: bridge

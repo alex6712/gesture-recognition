@@ -1,4 +1,4 @@
-# Pyrhon cache
+# Python cache
 __pycache__/
 *.pyo
 *.pyd
