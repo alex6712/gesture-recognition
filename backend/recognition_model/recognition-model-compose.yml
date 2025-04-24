@@ -1,0 +1,6 @@
+services:
+  recognition_model:
+    build: .
+    container_name: recognition_model
+    ports:
+      - "5000:5000"
