@@ -74,7 +74,7 @@ jobs:
 
       - name: Copy project to server
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p ~/gesture_recognition"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p ~/gesture_recognition"
   
           rsync -az --delete \
             --exclude={'LICENSE', 'README.md', '.github/*'} \
