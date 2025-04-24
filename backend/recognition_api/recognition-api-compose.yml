@@ -4,7 +4,7 @@ services:
     container_name: recognition_api
     env_file: .env
     environment:
-      - BACKEND_PORT=${BACKEND_PORT}
-      - HOST_PORT=${HOST_PORT}
+      - CONTAINER_PORT=${RECOGNITION_API_CONTAINER_PORT}
+      - HOST_PORT=${RECOGNITION_API_HOST_PORT}
     ports:
-      - "127.0.0.1:${HOST_PORT}:${BACKEND_PORT}"
+      - "127.0.0.1:${HOST_PORT}:${CONTAINER_PORT}"

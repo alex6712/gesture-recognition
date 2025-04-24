@@ -67,24 +67,25 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: Set up .env file
+      - name: Set up .env files
         run: |
           touch ./backend/recognition_api/.env
-          echo '${{ secrets.ENV_FILE }}' > ./backend/recognition_api/.env
+          echo '${{ secrets.RECOGNITION_API_ENV_FILE }}' > ./backend/recognition_api/.env
+          
+          touch ./docker.env
+          echo '${{ secrets.DOCKER_ENV_FILE }}' > ./docker.env
 
       - name: Copy project to server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p ~/gesture_recognition"
   
-          rsync -az --delete ./backend ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/gesture_recognition
-          rsync -az --delete ./frontend ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/gesture_recognition
-          rsync -az --delete ./docker-compose.yml ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/gesture_recognition
+          rsync -az --delete ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/gesture_recognition
 
       - name: Deploy with Docker Compose
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
             cd ~/gesture_recognition
-            docker compose down --remove-orphans
-            docker compose build --pull
-            docker compose up -d --wait
+            docker compose --env-file docker.env down --remove-orphans
+            docker compose --env-file docker.env build --pull
+            docker compose --env-file docker.env up -d --wait
           EOF
