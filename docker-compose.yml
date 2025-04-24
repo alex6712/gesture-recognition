@@ -1,10 +1,8 @@
-version: '3.12'
-
 services:
   recognition_api:
-    build: backend/recognition_api
+    build: /backend/recognition_api
     container_name: recognition_api
-    env_file: backend/recognition_api/.env
+    env_file: /backend/recognition_api/.env
     environment:
       - BACKEND_PORT=${BACKEND_PORT}
       - HOST_PORT=${HOST_PORT}
@@ -16,7 +14,7 @@ services:
       - recognition_net
 
   recognition_model:
-    build: backend/recognition_model
+    build: /backend/recognition_model
     container_name: recognition_model
     ports:
       - "5000:5000"
