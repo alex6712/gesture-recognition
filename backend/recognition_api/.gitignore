@@ -1,0 +1,14 @@
+# JetBrains workspace
+/.idea
+
+# Virtual environments
+/.venv
+
+# .env file
+**.env
+
+# PyCache
+**/__pycache__
+
+# VSCode workspace
+**/.vscode
