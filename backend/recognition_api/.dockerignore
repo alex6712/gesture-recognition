@@ -4,7 +4,6 @@ __pycache__/
 *.pyd
 
 # .env files
-*.env
 construct_prodenv.sh
 
 # Virtual environmnets
@@ -17,4 +16,8 @@ venv/
 
 # GIT
 .git/
-.gitignore
+*.gitignore
+
+# Tests
+tests/
+pytest.ini
