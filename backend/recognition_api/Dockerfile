@@ -12,7 +12,11 @@ RUN curl -sSL https://install.python-poetry.org | python3 - \
 
 ENV POETRY_VIRTUALENVS_CREATE=false
 
-WORKDIR /app
+WORKDIR /app/shared
+
+COPY ../shared ./
+
+WORKDIR /app/source
 
 COPY pyproject.toml poetry.lock* ./
 

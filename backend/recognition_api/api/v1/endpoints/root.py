@@ -3,7 +3,10 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, status
 
 from core.config import Settings, get_settings
-from core.recognition_model_client import get_recognition_model_client, RecognitionModelClient
+from core.recognition_model_client import (
+    get_recognition_model_client,
+    RecognitionModelClient,
+)
 from schemas.responses import AppInfoResponse, StandardResponse
 
 router = APIRouter(

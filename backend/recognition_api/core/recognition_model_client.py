@@ -1,7 +1,10 @@
 from functools import lru_cache
 
 import grpc
-from generated_grpc.recognition_model import recognition_model_pb2, recognition_model_pb2_grpc
+from generated_grpc.recognition_model import (
+    recognition_model_pb2,
+    recognition_model_pb2_grpc,
+)
 
 
 class RecognitionModelClient:
