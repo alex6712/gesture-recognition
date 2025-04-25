@@ -1,0 +1,21 @@
+[project]
+name = "backend-shared"
+version = "0.1.0"
+description = "gRPC shared files"
+authors = [
+    {name = "alex6712",email = "alexeivanyukov@yandex.ru"}
+]
+license = {text = "MIT License"}
+requires-python = ">=3.12"
+dependencies = [
+    "grpcio (>=1.71.0,<2.0.0)",
+    "protobuf (>=6.30.2,<7.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "generated_grpc"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

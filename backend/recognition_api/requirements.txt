@@ -1,6 +1,7 @@
 aiosqlite==0.21.0
 annotated-types==0.7.0
 anyio==4.9.0
+-e git+ssh://git@github.com/alex6712/gesture-recognition.git@2c548f4a331bf936e1d1a8d4804ecc8806d6f3cb#egg=backend_shared&subdirectory=backend/shared
 black==25.1.0
 certifi==2025.1.31
 click==8.1.8
@@ -10,8 +11,9 @@ email_validator==2.2.0
 fastapi==0.115.12
 fastapi-cli==0.0.7
 flake8==7.2.0
-h11==0.14.0
-httpcore==1.0.8
+grpcio==1.71.0
+h11==0.16.0
+httpcore==1.0.9
 httptools==0.6.4
 httpx==0.28.1
 idna==3.10
@@ -26,6 +28,7 @@ packaging==25.0
 pathspec==0.12.1
 platformdirs==4.3.7
 pluggy==1.5.0
+protobuf==6.30.2
 pycodestyle==2.13.0
 pydantic==2.11.3
 pydantic-settings==2.9.1
