@@ -8,13 +8,17 @@ authors = [
 license = {text = "MIT License"}
 requires-python = ">=3.12"
 dependencies = [
-    "grpcio (>=1.71.0,<2.0.0)",
+    "grpcio (>=1.72.0rc1,<2.0.0)",
     "protobuf (>=6.30.2,<7.0.0)"
 ]
 
 [tool.poetry]
 packages = [{include = "generated_grpc"}]
+exclude = ["__pycache__"]
 
+
+[tool.poetry.group.dev.dependencies]
+grpcio-tools = "^1.71.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

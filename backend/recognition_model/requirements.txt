@@ -1,10 +1,10 @@
--e git+ssh://git@github.com/alex6712/gesture-recognition.git@2c548f4a331bf936e1d1a8d4804ecc8806d6f3cb#egg=backend_shared&subdirectory=backend/shared
+-e git+ssh://git@github.com/alex6712/gesture-recognition.git@22e3178d094de2a6ca022b58977c570829df2382#egg=backend_shared&subdirectory=backend/shared
 black==25.1.0
 click==8.1.8
 filelock==3.18.0
 flake8==7.2.0
 fsspec==2025.3.2
-grpcio==1.71.0
+grpcio==1.72.0rc1
 Jinja2==3.1.6
 MarkupSafe==3.0.2
 mccabe==0.7.0
