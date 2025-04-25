@@ -3,6 +3,10 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, status
 
 from core.config import Settings, get_settings
+from core.recognition_model_client import (
+    get_recognition_model_client,
+    RecognitionModelClient,
+)
 from schemas.responses import AppInfoResponse, StandardResponse
 
 router = APIRouter(
@@ -14,7 +18,7 @@ router = APIRouter(
     "/",
     response_model=StandardResponse,
     status_code=status.HTTP_200_OK,
-    summary="Проверка работоспособности.",
+    summary="Проверка работоспособности API.",
 )
 async def root():
     """Корневой путь для проверки работоспособности API.
@@ -27,6 +31,27 @@ async def root():
         Ответ о корректной работе сервера.
     """
     return {"message": "API works!"}
+
+
+@router.get(
+    "/model",
+    response_model=StandardResponse,
+    status_code=status.HTTP_200_OK,
+    summary="Проверка работоспособности модели.",
+)
+async def model():
+    """Путь для проверки работоспособности модели.
+
+    Отправляет запрос с использованием gRPC Client. Получает ответ от сервиса модели,
+    возвращает ответ модели.
+
+    Returns
+    -------
+    response : StandardResponse
+        Ответ о корректной работе модели.
+    """
+    recognition_model_client: RecognitionModelClient = get_recognition_model_client()
+    return recognition_model_client.healthcheck()
 
 
 @router.get(

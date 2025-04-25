@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package backend;
+
+service RecognitionModel {
+    rpc HealthCheck (EmptyRequest) returns (StandardResponse);
+}
+
+message EmptyRequest {}
+
+message StandardResponse {
+    string message = 1;
+}

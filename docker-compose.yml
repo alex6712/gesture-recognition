@@ -6,12 +6,12 @@ services:
     networks:
       - recognition_net
 
-#  recognition_model:
-#    extends:
-#      service: recognition_model
-#      file: ./backend/recognition_model/docker-compose.yml
-#    networks:
-#      - recognition_net
+  recognition_model:
+    extends:
+      service: recognition_model
+      file: ./backend/recognition_model/docker-compose.yml
+    networks:
+      - recognition_net
 
 networks:
   recognition_net:

@@ -1,6 +1,8 @@
 services:
   recognition_api:
-    build: .
+    build:
+      context: ..
+      dockerfile: recognition_api/Dockerfile
     container_name: recognition_api
     env_file: .env
     environment:

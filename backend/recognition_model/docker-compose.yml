@@ -1,6 +1,8 @@
 services:
   recognition_model:
-    build: .
+    build:
+      context: ..
+      dockerfile: recognition_model/Dockerfile
     container_name: recognition_model
     ports:
-      - "5000:5000"
+      - "50051:50051"
