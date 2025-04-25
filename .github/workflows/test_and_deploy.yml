@@ -80,11 +80,11 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p ~/gesture_recognition"
   
           rsync -az --delete ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/gesture_recognition
-
       - name: Deploy with Docker Compose
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
             cd ~/gesture_recognition
+            
             docker compose --env-file docker.env down --remove-orphans
             docker compose --env-file docker.env build --pull
             docker compose --env-file docker.env up -d --wait

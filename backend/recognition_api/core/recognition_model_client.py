@@ -8,7 +8,7 @@ from generated_grpc.recognition_model import (
 
 
 class RecognitionModelClient:
-    def __init__(self, host: str = "127.0.0.1", port: int = 50051):
+    def __init__(self, host: str = "recognition_model", port: int = 50051):
         self.channel = grpc.insecure_channel(f"{host}:{port}")
         self.stub = recognition_model_pb2_grpc.RecognitionModelStub(self.channel)
 

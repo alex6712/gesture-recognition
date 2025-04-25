@@ -14,14 +14,14 @@ ENV POETRY_VIRTUALENVS_CREATE=false
 
 WORKDIR /app/shared
 
-COPY ../shared ./
+COPY shared ./
 
 WORKDIR /app/source
 
-COPY pyproject.toml poetry.lock* ./
+COPY recognition_api/pyproject.toml recognition_api/poetry.lock* ./
 
 RUN poetry install --no-interaction --no-ansi
 
-COPY . .
+COPY recognition_api .
 
 CMD ["python", "start.py"]
