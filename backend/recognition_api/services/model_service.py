@@ -1,4 +1,4 @@
-from fastapi import status
+from fastapi import status, HTTPException
 from grpc import RpcError, StatusCode
 
 from repositories.model_repository import RecognitionModelRepository
@@ -6,8 +6,8 @@ from schemas.v1.responses import StandardResponse
 
 
 class RecognitionModelService:
-    def __init__(self, recognition_model_repo: RecognitionModelRepository):
-        self.model_repo: RecognitionModelRepository = recognition_model_repo
+    def __init__(self, model_repo: RecognitionModelRepository):
+        self.model_repo: RecognitionModelRepository = model_repo
 
     async def health_check(self):
         try:
@@ -16,11 +16,13 @@ class RecognitionModelService:
             return StandardResponse(message=response.message)
         except RpcError as e:
             if e.args[0].code == StatusCode.UNAVAILABLE:
-                return StandardResponse(
-                    code=status.HTTP_503_SERVICE_UNAVAILABLE,
-                    message="Соединение с моделью не установлено.",
+                raise HTTPException(
+                    status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                    detail="Соединение с моделью не установлено.",
+                    headers={"Retry-After": "120"},
                 )
 
-        return StandardResponse(
-            code=status.HTTP_500_INTERNAL_SERVER_ERROR, message="Неизвестная ошибка."
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Неизвестная ошибка.",
         )
