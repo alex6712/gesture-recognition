@@ -9,7 +9,7 @@ from generated_grpc.recognition_model import (
 
 class RecognitionModel(recognition_model_pb2_grpc.RecognitionModelServicer):
     def HealthCheck(self, request, context):
-        return recognition_model_pb2.StandardResponse(message="Model works!")
+        return recognition_model_pb2.StandardResponse(message="Model works!")  # noqa
 
 
 if __name__ == "__main__":
