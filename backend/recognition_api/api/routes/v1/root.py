@@ -2,12 +2,10 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, status
 
+from api.dependencies import get_model_service
 from core.config import Settings, get_settings
-from core.recognition_model_client import (
-    get_recognition_model_client,
-    RecognitionModelClient,
-)
-from schemas.responses import AppInfoResponse, StandardResponse
+from services import RecognitionModelService
+from schemas.v1.responses import AppInfoResponse, StandardResponse
 
 router = APIRouter(
     tags=["root"],
@@ -30,7 +28,7 @@ async def root():
     response : StandardResponse
         Ответ о корректной работе сервера.
     """
-    return {"message": "API works!"}
+    return StandardResponse(message="API works!")
 
 
 @router.get(
@@ -39,19 +37,25 @@ async def root():
     status_code=status.HTTP_200_OK,
     summary="Проверка работоспособности модели.",
 )
-async def model():
+async def model(
+    model_service: Annotated[RecognitionModelService, Depends(get_model_service)],
+):
     """Путь для проверки работоспособности модели.
 
     Отправляет запрос с использованием gRPC Client. Получает ответ от сервиса модели,
     возвращает ответ модели.
+
+    Parameters
+    ----------
+    model_service : RecognitionModelService
+        Сервисный слой обслуживания gRPC-сервера модели компьютерного зрения.
 
     Returns
     -------
     response : StandardResponse
         Ответ о корректной работе модели.
     """
-    recognition_model_client: RecognitionModelClient = get_recognition_model_client()
-    return recognition_model_client.healthcheck()
+    return await model_service.health_check()
 
 
 @router.get(
@@ -81,11 +85,11 @@ async def app_info(settings: Annotated[Settings, Depends(get_settings)]):
     response : AppInfoResponse
         Ответ, содержащий информацию о серверной стороне приложения.
     """
-    return {
-        "app_name": settings.APP_NAME,
-        "app_version": settings.APP_VERSION,
-        "app_description": settings.APP_DESCRIPTION,
-        "app_summary": settings.APP_SUMMARY,
-        "admin_name": settings.ADMIN_NAME,
-        "admin_email": settings.ADMIN_EMAIL,
-    }
+    return AppInfoResponse(
+        app_name=settings.APP_NAME,
+        app_version=settings.APP_VERSION,
+        app_description=settings.APP_DESCRIPTION,
+        app_summary=settings.APP_SUMMARY,
+        admin_name=settings.ADMIN_NAME,
+        admin_email=settings.ADMIN_EMAIL,
+    )
