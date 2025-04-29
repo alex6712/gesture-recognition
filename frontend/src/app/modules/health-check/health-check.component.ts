@@ -10,22 +10,22 @@ import { CommonModule } from '@angular/common';
     styleUrl: './health-check.component.scss',
 })
 export class HealthCheckComponent implements OnInit {
-    apiState: string = '';
-    modelState: string = '';
+    apiState: string = 'Получаю данные...';
+    modelState: string = 'Получаю данные...';
 
     constructor(private healthCheckService: HealthCheckService) {}
 
     ngOnInit(): void {
         this.healthCheckService.checkAPI().subscribe((apiState) => {
             apiState.code === 200
-                ? (this.apiState = apiState.message)
-                : (this.apiState = 'Not Available');
+                ? (this.apiState = '✅ ' + apiState.message)
+                : (this.apiState = '❌ Not Available');
         });
 
         this.healthCheckService.checkModel().subscribe((modelState) => {
             modelState.code === 200
-                ? (this.modelState = modelState.message)
-                : (this.modelState = 'Not Available');
+                ? (this.modelState = '✅ ' + modelState.message)
+                : (this.modelState = '❌ Not Available');
         });
     }
 }
