@@ -9,7 +9,7 @@ RUN npm ci --ignore-scripts --no-progress --quiet
 
 COPY . .
 
-RUN npm run build --prod
+RUN npm run build
 
 # Stage 2
 FROM nginx:stable-alpine

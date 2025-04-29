@@ -2,5 +2,7 @@ services:
   recognition_frontend:
     build: .
     container_name: recognition_frontend
+    expose:
+      - 80
     ports:
       - "4200:80"

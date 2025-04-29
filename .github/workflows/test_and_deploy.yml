@@ -71,9 +71,6 @@ jobs:
         run: |
           touch ./backend/recognition_api/.env
           echo '${{ secrets.RECOGNITION_API_ENV_FILE }}' > ./backend/recognition_api/.env
-          
-          touch ./docker.env
-          echo '${{ secrets.DOCKER_ENV_FILE }}' > ./docker.env
 
       - name: Copy project to server
         run: |
@@ -85,7 +82,7 @@ jobs:
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
             cd ~/gesture_recognition
             
-            docker compose --env-file docker.env down --remove-orphans
-            docker compose --env-file docker.env build --pull
-            docker compose --env-file docker.env up -d --wait
+            docker compose down --remove-orphans
+            docker compose build --pull
+            docker compose up -d --wait
           EOF
