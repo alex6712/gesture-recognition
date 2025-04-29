@@ -5,4 +5,4 @@ services:
       dockerfile: recognition_model/Dockerfile
     container_name: recognition_model
     ports:
-      - "50051:50051"
+      - 50051
