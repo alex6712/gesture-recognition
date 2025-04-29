@@ -3,4 +3,4 @@ services:
     build: .
     container_name: recognition_frontend
     ports:
-      - "127.0.0.1:4200:4200"
+      - "4200:80"
