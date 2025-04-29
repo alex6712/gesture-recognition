@@ -4,5 +4,5 @@ services:
       context: ..
       dockerfile: recognition_model/Dockerfile
     container_name: recognition_model
-    ports:
+    expose:
       - 50051
