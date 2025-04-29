@@ -1,0 +1,6 @@
+services:
+  recognition_frontend:
+    build: .
+    container_name: recognition_frontend
+    ports:
+      - "4200:4200"

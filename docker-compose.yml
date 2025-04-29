@@ -13,6 +13,11 @@ services:
     networks:
       - recognition_net
 
+  recognition_frontend:
+    extends:
+      service: recognition_frontend
+      file: ./frontend/docker-compose.yml
+
 networks:
   recognition_net:
     driver: bridge
