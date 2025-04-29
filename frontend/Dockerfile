@@ -9,7 +9,7 @@ RUN npm ci --ignore-scripts --no-progress --quiet
 
 COPY . .
 
-RUN npm run build
+RUN npm run build --prod
 
 # Stage 2
 FROM nginx:stable-alpine
@@ -17,3 +17,5 @@ FROM nginx:stable-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=builder /app/dist/frontend/browser /usr/share/nginx/html/
+
+CMD [ "nginx", "-g", "daemon off;" ]
