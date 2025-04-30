@@ -9,7 +9,7 @@ class RecognitionModelService:
     def __init__(self, model_repo: RecognitionModelRepository):
         self.model_repo: RecognitionModelRepository = model_repo
 
-    async def health_check(self):
+    async def health_check(self) -> StandardResponse:
         try:
             response = await self.model_repo.health_check()
 
