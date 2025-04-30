@@ -5,7 +5,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'health-check', pathMatch: 'full' },
     {
         path: 'health-check',
-        title: 'Heal Check',
+        title: 'Health Check',
         component: HealthCheckComponent,
     },
 ];
