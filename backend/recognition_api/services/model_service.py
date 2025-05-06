@@ -12,17 +12,18 @@ class RecognitionModelService:
     async def health_check(self) -> StandardResponse:
         try:
             response = await self.model_repo.health_check()
-
-            return StandardResponse(message=response.message)
         except RpcError as e:
-            if e.args[0].code == StatusCode.UNAVAILABLE:
-                raise HTTPException(
-                    status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-                    detail="Соединение с моделью не установлено.",
-                    headers={"Retry-After": "120"},
-                )
+            match e.args[0].code:
+                case StatusCode.UNAVAILABLE:
+                    raise HTTPException(
+                        status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+                        detail="Соединение с моделью не установлено.",
+                        headers={"Retry-After": "120"},
+                    )
+                case _:
+                    raise HTTPException(
+                        status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        detail="Неизвестная ошибка.",
+                    )
 
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Неизвестная ошибка.",
-        )
+        return StandardResponse(message=response.message)
