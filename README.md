@@ -6,9 +6,12 @@
         Сервис определения жестов рук на видеопотоке
     </h3>
     <img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/alex6712/gesture-recognition?logo=GitHub">
-    <img alt="Tests Passed" src="https://github.com/alex6712/gesture-recognition/actions/workflows/test_and_deploy.yml/badge.svg">
+    <img alt="Test and Deploy" src="https://github.com/alex6712/gesture-recognition/actions/workflows/test_and_deploy.yml/badge.svg">
     <a href="https://github.com/psf/black">
-        <img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg">
+        <img alt="Python code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg">
+    </a>
+    <a href="https://github.com/prettier/prettier">
+        <img alt="TypeScript code style: Prettier" src="https://img.shields.io/badge/code%20style-prettier-ff69b4.svg">
     </a>
 </div>
 
