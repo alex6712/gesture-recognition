@@ -37,8 +37,6 @@ class Settings(BaseSettings):
         Email для связи с ответственным лицом.
     DEV_MODE : bool
         Режим разработки.
-    INITIALIZE_DB : bool
-        Пересоздание базы данных.
     BACKEND_CORS_ORIGINS : List[str]
         Список источников для CORS Middleware.
     DOMAIN : str | IPvAnyAddress
@@ -56,8 +54,6 @@ class Settings(BaseSettings):
     ADMIN_EMAIL: EmailStr
 
     DEV_MODE: bool
-
-    INITIALIZE_DB: bool
 
     BACKEND_CORS_ORIGINS: List[str]
 

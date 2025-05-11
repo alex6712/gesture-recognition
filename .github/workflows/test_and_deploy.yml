@@ -67,7 +67,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
 
-      - name: Set up .env files
+      - name: Set up .env file
         run: |
           touch ./backend/recognition_api/.env
           echo '${{ secrets.RECOGNITION_API_ENV_FILE }}' > ./backend/recognition_api/.env
@@ -77,6 +77,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p ~/gesture_recognition"
   
           rsync -az --delete ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:~/gesture_recognition
+          
       - name: Deploy with Docker Compose
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
