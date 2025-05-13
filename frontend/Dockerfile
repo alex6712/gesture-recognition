@@ -1,4 +1,4 @@
-# Stage 1
+# Stage 1 (сборка Angular-приложения)
 FROM node:20.19.1-alpine3.21 AS builder
 
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY . .
 
 RUN npm run build
 
-# Stage 2
+# Stage 2 (копирование файлов, запуск)
 FROM nginx:stable-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf

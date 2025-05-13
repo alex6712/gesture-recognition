@@ -24,7 +24,7 @@ services:
     container_name: recognition_frontend
     build:
       context: ./frontend
-      dockerfile: ./frontend/Dockerfile
+      dockerfile: ./Dockerfile
     expose:
       - 80
     ports:
