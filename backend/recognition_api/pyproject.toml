@@ -11,14 +11,12 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard] (>=0.115.12,<0.116.0)",
     "pydantic-settings (>=2.9.1,<3.0.0)",
-    "backend-shared"
+    "grpcio (>=1.71.0,<2.0.0)",
+    "protobuf (>=6.30.2,<7.0.0)",
 ]
 
 [tool.poetry]
 package-mode = false
-
-[tool.poetry.dependencies]
-backend-shared = { path = "../shared/", develop = true }
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
@@ -26,6 +24,7 @@ flake8 = "^7.2.0"
 pytest-asyncio = "^0.26.0"
 pytest-cov = "^6.1.1"
 aiosqlite = "^0.21.0"
+grpcio-tools = "^1.71.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

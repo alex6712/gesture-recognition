@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
 import grpc
-from generated_grpc.recognition_model import (
+from interservice_grpc.generated import (
     recognition_model_pb2,
     recognition_model_pb2_grpc,
 )
@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from grpc import Channel
 
 
-class RecognitionModelClient:
+class RecognitionModelStub:
     """Класс gRPC-клиента.
 
     Является самым нижним слоем связи приложения с gRPC-сервером модели машинного обучения.

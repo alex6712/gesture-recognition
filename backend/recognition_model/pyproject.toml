@@ -8,18 +8,19 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "backend-shared"
+    "grpcio (>=1.71.0,<2.0.0)",
+    "protobuf (>=6.30.2,<7.0.0)"
 ]
 
 [tool.poetry]
 package-mode = false
 
 [tool.poetry.dependencies]
-backend-shared = { path = "../shared/", develop = true }
 
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
 flake8 = "^7.2.0"
+grpcio-tools = "^1.71.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

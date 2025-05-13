@@ -1,7 +1,7 @@
 from concurrent import futures
 
 import grpc
-from generated_grpc.recognition_model import (
+from interservice_grpc.generated import (
     recognition_model_pb2,
     recognition_model_pb2_grpc,
 )

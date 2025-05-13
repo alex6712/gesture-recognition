@@ -1,4 +1,4 @@
-from grpc_clients import RecognitionModelClient
+from interservice_grpc.stubs import RecognitionModelStub
 from repositories import RecognitionModelRepository
 from services import RecognitionModelService
 
@@ -17,7 +17,7 @@ async def get_model_service():
     service : RecognitionModelService
         Объект сервисного слоя.
     """
-    model_client: RecognitionModelClient = RecognitionModelClient(
+    model_client: RecognitionModelStub = RecognitionModelStub(
         host="recognition_model", port=50051
     )
     model_repository: RecognitionModelRepository = RecognitionModelRepository(

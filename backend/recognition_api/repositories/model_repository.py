@@ -1,8 +1,8 @@
-from grpc_clients.model_client import RecognitionModelClient
+from interservice_grpc.stubs.model_stub import RecognitionModelStub
 
 
 class RecognitionModelRepository:
-    def __init__(self, grpc_client: RecognitionModelClient):
+    def __init__(self, grpc_client: RecognitionModelStub):
         self.grpc_client = grpc_client
 
     async def health_check(self):

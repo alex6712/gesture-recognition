@@ -13,3 +13,6 @@ construct_prodenv.sh
 
 # VSCode workspace
 **/.vscode
+
+# Development gRPC files
+interservice_grpc/generated/

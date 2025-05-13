@@ -1,8 +1,0 @@
-services:
-  recognition_model:
-    build:
-      context: ..
-      dockerfile: recognition_model/Dockerfile
-    container_name: recognition_model
-    expose:
-      - 50051

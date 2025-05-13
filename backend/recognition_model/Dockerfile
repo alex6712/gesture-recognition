@@ -1,27 +1,44 @@
-FROM python:3.12-slim
+# Stage 1 (генерация gRPC и установка зависимостей)
+FROM python:3.12-slim as builder
 
-RUN apt-get update && apt-get install -y \
-    curl \
-    build-essential \
+WORKDIR /build
+
+ENV POETRY_VERSION=2.1.2 \
+    POETRY_VIRTUALENVS_CREATE=false
+
+RUN apt-get update \
+    && apt-get install -y curl build-essential \
+    && curl -sSL https://install.python-poetry.org | python3 - \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-ENV POETRY_VERSION=2.1.2
-RUN curl -sSL https://install.python-poetry.org | python3 - \
-    && ln -s /root/.local/bin/poetry /usr/local/bin/poetry
+COPY backend/recognition_model/pyproject.toml backend/recognition_model/poetry.lock* ./
 
-ENV POETRY_VIRTUALENVS_CREATE=false
+RUN poetry install --no-interaction --no-ansi --only main \
+    && pip install grpcio-tools
 
-WORKDIR /app/shared
+COPY backend/recognition_model/ ./app/
 
-COPY shared ./
+COPY protos/ ./protos/
 
-WORKDIR /app/source
+# Временно генерируется только hardcoded .proto-сервис.
+# Необходимо реализовать автоматизированную генерацию
+# связанных сервисов.
+RUN mkdir -p ./app/interservice_grpc/generated \
+    && touch ./app/interservice_grpc/generated/__init__.py \
+    && poetry run python -m grpc_tools.protoc \
+      -I app/interservice_grpc/generated=protos \
+      --python_out=. \
+      --grpc_python_out=. \
+      protos/recognition_model.proto
 
-COPY recognition_model/pyproject.toml recognition_model/poetry.lock* ./
+# Stage 2 (копирование файлов и запуск сервиса)
+FROM python:3.12-slim as runtime
 
-RUN poetry install --no-interaction --no-ansi
+WORKDIR /app
 
-COPY recognition_model .
+COPY --from=builder /build/app ./
+COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
 
-CMD ["python", "main.py"]
+CMD ["python", "start.py"]

@@ -42,12 +42,23 @@ jobs:
           key: poetry-${{ hashFiles('backend/recognition_api/poetry.lock') }}
 
       - name: Install dependencies with Poetry
-        run: poetry install --no-interaction --no-root
+        run: poetry install --no-interaction --no-root --with dev
 
       - name: Set up .env file
         run: |
           touch .env
           echo '${{ secrets.RECOGNITION_API_ENV_FILE }}' > .env
+      
+      - name: Generate gRPC files
+        run: |
+          mkdir -p interservice_grpc/generated/
+          touch interservice_grpc/generated/__init.py
+          
+          poetry run python -m grpc_tools.protoc \
+            -I interservice_grpc/generated=../../protos \
+            --python_out=. \
+            --grpc_python_out=. \
+            ../../protos/recognition_model.proto
 
       - name: Run tests
         run: poetry run pytest tests
