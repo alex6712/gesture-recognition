@@ -44,4 +44,4 @@ class RecognitionModelStub:
             Ответ о работоспособности модели.
         """
         request = recognition_model_pb2.EmptyRequest()  # noqa
-        return self.stub.HealthCheck(request)
+        return await self.stub.HealthCheck(request)
