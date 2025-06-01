@@ -2,7 +2,7 @@ from functools import lru_cache
 from os.path import abspath
 from typing import List
 
-from pydantic import EmailStr, IPvAnyAddress, field_validator
+from pydantic import EmailStr, field_validator
 from pydantic_settings import SettingsConfigDict, BaseSettings
 
 
@@ -35,14 +35,10 @@ class Settings(BaseSettings):
         Имя ответственного лица.
     ADMIN_EMAIL : EmailStr
         Email для связи с ответственным лицом.
-    DEV_MODE : bool
-        Режим разработки.
     BACKEND_CORS_ORIGINS : List[str]
         Список источников для CORS Middleware.
-    DOMAIN : str | IPvAnyAddress
-        IP домена, на котором расположено приложение.
-    BACKEND_PORT : int
-        Порт приложения.
+    CURRENT_API_URL : str
+        Добавочная строка текущей версии API.
     """
 
     APP_NAME: str
@@ -52,8 +48,6 @@ class Settings(BaseSettings):
 
     ADMIN_NAME: str
     ADMIN_EMAIL: EmailStr
-
-    DEV_MODE: bool
 
     BACKEND_CORS_ORIGINS: List[str]
 
@@ -67,10 +61,6 @@ class Settings(BaseSettings):
             return value
 
         raise ValueError(value)
-
-    DOMAIN: str | IPvAnyAddress
-
-    BACKEND_PORT: int
 
     CURRENT_API_URL: str
 
