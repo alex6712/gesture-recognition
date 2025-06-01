@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
 import grpc
-from interservice_grpc.generated import (
+from app.interservice_grpc.generated import (
     recognition_model_pb2,
     recognition_model_pb2_grpc,
 )

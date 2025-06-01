@@ -2,10 +2,10 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, status
 
-from api.dependencies import get_model_service
-from core.config import Settings, get_settings
-from services import RecognitionModelService
-from schemas.v1.responses import AppInfoResponse, StandardResponse
+from app.api.dependencies import get_model_service
+from app.core.config import Settings, get_settings
+from app.services import RecognitionModelService
+from app.schemas.v1.responses import AppInfoResponse, StandardResponse
 
 router = APIRouter(
     tags=["root"],

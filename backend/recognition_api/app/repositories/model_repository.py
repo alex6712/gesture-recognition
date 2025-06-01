@@ -1,4 +1,4 @@
-from interservice_grpc.stubs.model_stub import RecognitionModelStub
+from app.interservice_grpc.stubs import RecognitionModelStub
 
 
 class RecognitionModelRepository:

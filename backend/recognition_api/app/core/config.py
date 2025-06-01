@@ -65,7 +65,7 @@ class Settings(BaseSettings):
     CURRENT_API_URL: str
 
     model_config = SettingsConfigDict(
-        env_file=abspath(".env"),
+        env_file=abspath("../.env"),
         env_file_encoding="utf-8",
         case_sensitive=True,
         enable_decoding=False,

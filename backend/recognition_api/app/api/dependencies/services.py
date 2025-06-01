@@ -1,6 +1,6 @@
-from interservice_grpc.stubs import RecognitionModelStub
-from repositories import RecognitionModelRepository
-from services import RecognitionModelService
+from app.interservice_grpc.stubs import RecognitionModelStub
+from app.repositories import RecognitionModelRepository
+from app.services import RecognitionModelService
 
 
 async def get_model_service():

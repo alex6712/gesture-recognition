@@ -18,7 +18,7 @@ COPY backend/recognition_api/pyproject.toml backend/recognition_api/poetry.lock*
 RUN poetry install --no-interaction --no-ansi --only main \
     && pip install grpcio-tools
 
-COPY backend/recognition_api/ ./app/
+COPY backend/recognition_api/app ./app/
 
 COPY protos/ ./protos/
 
@@ -28,9 +28,9 @@ COPY protos/ ./protos/
 RUN mkdir -p ./app/interservice_grpc/generated \
     && touch ./app/interservice_grpc/generated/__init__.py \
     && poetry run python -m grpc_tools.protoc \
-      -I interservice_grpc/generated=protos \
-      --python_out=./app \
-      --grpc_python_out=./app \
+      -I app/interservice_grpc/generated=protos \
+      --python_out=. \
+      --grpc_python_out=. \
       protos/recognition_model.proto
 
 # Stage 2 (копирование файлов и запуск сервиса)

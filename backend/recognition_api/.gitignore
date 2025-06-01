@@ -15,4 +15,4 @@ construct_prodenv.ps1
 **/.vscode
 
 # Development gRPC files
-interservice_grpc/generated/
+app/interservice_grpc/generated/
