@@ -1,7 +1,7 @@
 from fastapi import status, HTTPException
 from grpc import RpcError, StatusCode
 
-from app.repositories.model_repository import RecognitionModelRepository
+from app.repositories import RecognitionModelRepository
 from app.schemas.v1.responses import StandardResponse
 
 
