@@ -61,7 +61,7 @@ jobs:
             ../../protos/recognition_model.proto
 
       - name: Run tests
-        run:
+        run: |
           cd app/
           poetry run pytest ../tests
 
