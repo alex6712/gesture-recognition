@@ -51,17 +51,19 @@ jobs:
       
       - name: Generate gRPC files
         run: |
-          mkdir -p interservice_grpc/generated/
-          touch interservice_grpc/generated/__init.py
+          mkdir -p app/interservice_grpc/generated/
+          touch app/interservice_grpc/generated/__init.py
           
           poetry run python -m grpc_tools.protoc \
-            -I interservice_grpc/generated=../../protos \
+            -I app/interservice_grpc/generated=../../protos \
             --python_out=. \
             --grpc_python_out=. \
             ../../protos/recognition_model.proto
 
       - name: Run tests
-        run: poetry run pytest tests
+        run:
+          cd app/
+          poetry run pytest ../tests
 
   deploy:
     needs: test-gesture-recognition-api

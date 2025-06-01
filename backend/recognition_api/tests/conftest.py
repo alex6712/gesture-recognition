@@ -2,7 +2,7 @@ import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 
 from app.core.config import Settings, get_settings
-from main import recognition_api
+from app.main import recognition_api
 
 settings: Settings = get_settings()
 
