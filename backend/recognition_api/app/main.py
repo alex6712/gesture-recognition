@@ -8,6 +8,10 @@ settings: Settings = get_settings()
 
 tags_metadata = [
     {
+        "name": "model",
+        "description": "**Gateway** для работы с _моделью компьютерного зрения_.",
+    },
+    {
         "name": "root",
         "description": "Получение информации о **приложении**.",
     },

@@ -2,9 +2,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, status
 
-from app.api.dependencies import get_model_service
 from app.core.config import Settings, get_settings
-from app.services import RecognitionModelService
 from app.schemas.v1.responses import AppInfoResponse, StandardResponse
 
 router = APIRouter(
@@ -29,33 +27,6 @@ async def root():
         Ответ о корректной работе сервера.
     """
     return StandardResponse(message="API works!")
-
-
-@router.get(
-    "/model",
-    response_model=StandardResponse,
-    status_code=status.HTTP_200_OK,
-    summary="Проверка работоспособности модели.",
-)
-async def model(
-    model_service: Annotated[RecognitionModelService, Depends(get_model_service)],
-):
-    """Путь для проверки работоспособности модели.
-
-    Отправляет запрос с использованием gRPC Client. Получает ответ от сервиса модели,
-    возвращает ответ модели.
-
-    Parameters
-    ----------
-    model_service : RecognitionModelService
-        Сервисный слой обслуживания gRPC-сервера модели компьютерного зрения.
-
-    Returns
-    -------
-    response : StandardResponse
-        Ответ о корректной работе модели.
-    """
-    return await model_service.health_check()
 
 
 @router.get(
