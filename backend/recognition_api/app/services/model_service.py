@@ -22,6 +22,7 @@ class RecognitionModelService:
     health_check()
         Проверка работоспособности модели.
     """
+
     def __init__(self, model_repo: RecognitionModelRepository):
         self.model_repo: RecognitionModelRepository = model_repo
 

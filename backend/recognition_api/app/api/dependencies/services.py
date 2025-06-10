@@ -18,7 +18,7 @@ async def get_model_service():
         Объект сервисного слоя.
     """
     model_client: RecognitionModelStub = RecognitionModelStub(
-        host="recognition_model", port=50051
+        host="localhost", port=50051
     )
     model_repository: RecognitionModelRepository = RecognitionModelRepository(
         model_client

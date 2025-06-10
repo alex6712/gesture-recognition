@@ -1,13 +1,8 @@
-from typing import TYPE_CHECKING
-
 import grpc
 from app.interservice_grpc.generated import (
     recognition_model_pb2,
     recognition_model_pb2_grpc,
 )
-
-if TYPE_CHECKING:
-    from grpc import Channel
 
 
 class RecognitionModelStub:
@@ -17,7 +12,7 @@ class RecognitionModelStub:
 
     Attributes
     ----------
-    channel : Channel
+    channel : grpc.Channel
         Канал связи с gRPC-сервером.
     stub : recognition_model_pb2_grpc.RecognitionModelStub
         Исполнитель запросов.
@@ -32,7 +27,7 @@ class RecognitionModelStub:
         self.channel = grpc.insecure_channel(f"{host}:{port}")
         self.stub = recognition_model_pb2_grpc.RecognitionModelStub(self.channel)
 
-    async def health_check(self):
+    async def health_check(self) -> recognition_model_pb2.StandardResponse:  # noqa
         """Получение ответа от gRPC-сервера модели.
 
         Собирает gRPC-запрос (в данном случае пустой), возвращает
