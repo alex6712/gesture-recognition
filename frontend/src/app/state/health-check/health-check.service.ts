@@ -19,7 +19,7 @@ export class HealthCheckService {
     }
 
     checkModel(): Observable<ApiResMessageModel> {
-        return this.http.get<ApiResMessageModel>('model').pipe(
+        return this.http.get<ApiResMessageModel>('model/').pipe(
             tap((modelState) => {
                 return modelState;
             }),
