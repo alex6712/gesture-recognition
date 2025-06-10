@@ -58,7 +58,7 @@ jobs:
             -I app/interservice_grpc/generated=../../protos \
             --python_out=. \
             --grpc_python_out=. \
-            ../../protos/recognition_model.proto
+            ../../protos/v1/recognition_model.proto
 
       - name: Run tests
         run: |
