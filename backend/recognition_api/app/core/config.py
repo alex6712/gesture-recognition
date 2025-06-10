@@ -39,6 +39,8 @@ class Settings(BaseSettings):
         Список источников для CORS Middleware.
     CURRENT_API_URL : str
         Добавочная строка текущей версии API.
+    MODEL_SERVER_DOMAIN : str
+        Домен gRPC-сервера модели компьютерного зрения.
     """
 
     APP_NAME: str
@@ -63,6 +65,8 @@ class Settings(BaseSettings):
         raise ValueError(value)
 
     CURRENT_API_URL: str
+
+    MODEL_SERVER_DOMAIN: str
 
     model_config = SettingsConfigDict(
         env_file=abspath("../.env"),

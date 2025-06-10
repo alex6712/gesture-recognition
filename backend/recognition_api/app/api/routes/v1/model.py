@@ -1,10 +1,12 @@
-from typing import Annotated
+from typing import TYPE_CHECKING
 
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, status
 
-from app.api.dependencies import get_model_service
+from app.core.dependencies import RecognitionModelServiceDependency
 from app.schemas.v1.responses import StandardResponse
-from app.services import RecognitionModelService
+
+if TYPE_CHECKING:
+    from app.services.model_service import RecognitionModelService
 
 router = APIRouter(
     prefix="/model",
@@ -19,7 +21,7 @@ router = APIRouter(
     summary="Проверка работоспособности модели.",
 )
 async def model(
-    model_service: Annotated[RecognitionModelService, Depends(get_model_service)],
+    model_service: RecognitionModelServiceDependency,
 ):
     """Путь для проверки работоспособности модели.
 

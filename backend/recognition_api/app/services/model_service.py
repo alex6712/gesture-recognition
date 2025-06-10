@@ -1,6 +1,8 @@
 from fastapi import status, HTTPException
 from grpc import RpcError, StatusCode
 
+from app.core.dependencies import SettingsDependency
+from app.interservice_grpc.stubs import RecognitionModelStub
 from app.repositories import RecognitionModelRepository
 from app.schemas.v1.responses import StandardResponse
 
@@ -65,3 +67,24 @@ class RecognitionModelService:
                     )
 
         return StandardResponse(message=response.message)
+
+
+async def get_model_service(settings: SettingsDependency):
+    """Создаёт объект сервисного слоя обслуживания gRPC сервера модели машинного обучения.
+
+    Создаёт клиент gRPC-сервера, его обёртку в виде паттерна Repository, конструирует
+    объект сервисного слоя и возвращает его.
+
+    Returns
+    -------
+    service : RecognitionModelService
+        Объект сервисного слоя.
+    """
+    model_stub: RecognitionModelStub = RecognitionModelStub(
+        host=settings.MODEL_SERVER_DOMAIN, port=50051
+    )
+    model_repository: RecognitionModelRepository = RecognitionModelRepository(
+        model_stub
+    )
+
+    return RecognitionModelService(model_repository)

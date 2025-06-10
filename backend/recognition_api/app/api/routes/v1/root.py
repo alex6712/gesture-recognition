@@ -1,8 +1,6 @@
-from typing import Annotated
+from fastapi import APIRouter, status
 
-from fastapi import APIRouter, Depends, status
-
-from app.core.config import Settings, get_settings
+from app.core.dependencies import SettingsDependency
 from app.schemas.v1.responses import AppInfoResponse, StandardResponse
 
 router = APIRouter(
@@ -35,7 +33,7 @@ async def root():
     status_code=status.HTTP_200_OK,
     summary="Информация о приложении.",
 )
-async def app_info(settings: Annotated[Settings, Depends(get_settings)]):
+async def app_info(settings: SettingsDependency):
     """Запрос на получение информации о серверной стороне приложения.
 
     Получаемая информация:
