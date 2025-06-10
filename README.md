@@ -139,13 +139,13 @@ https://api.gesture-recognition-nntu.ru
 Запрос **curl**:
 ```
 curl -X 'GET' \
-  'https://api.gesture-recognition-nntu.ru/api/v1/' \
+  'https://api.gesture-recognition-nntu.ru/v1/' \
   -H 'accept: application/json'
 ```
 
 **Request URL**:
 ```
-https://api.gesture-recognition-nntu.ru/api/v1/
+https://api.gesture-recognition-nntu.ru/v1/
 ```
 
 Ответ **StandardResponse**:
@@ -153,6 +153,28 @@ https://api.gesture-recognition-nntu.ru/api/v1/
 {
   "code": 200,
   "message": "API works!"
+}
+```
+
+### *model*
+
+Запрос **curl**:
+```
+curl -X 'GET' \
+  'https://api.gesture-recognition-nntu.ru/v1/model/' \
+  -H 'accept: application/json'
+```
+
+**Request URL**:
+```
+https://api.gesture-recognition-nntu.ru/v1/model/
+```
+
+Ответ **StandardResponse**:
+```json
+{
+  "code": 200,
+  "message": "Model works!"
 }
 ```
 
