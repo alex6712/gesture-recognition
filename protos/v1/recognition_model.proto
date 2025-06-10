@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package recognition_model;
+package recognition_model.v1;
 
 service RecognitionModel {
     rpc HealthCheck (EmptyRequest) returns (StandardResponse);

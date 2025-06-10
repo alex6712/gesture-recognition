@@ -1,5 +1,5 @@
 import grpc
-from app.interservice_grpc.generated import (
+from app.interservice_grpc.generated.v1 import (
     recognition_model_pb2,
     recognition_model_pb2_grpc,
 )
