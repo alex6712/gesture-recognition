@@ -1,4 +1,4 @@
-from app.interservice_grpc.generated import recognition_model_pb2
+from app.interservice_grpc.generated.v1 import recognition_model_pb2
 
 from app.interservice_grpc.stubs import RecognitionModelStub
 

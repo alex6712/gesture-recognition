@@ -31,7 +31,7 @@ RUN mkdir -p ./app/interservice_grpc/generated \
       -I app/interservice_grpc/generated=protos \
       --python_out=. \
       --grpc_python_out=. \
-      protos/recognition_model.proto
+      protos/v1/recognition_model.proto
 
 # Stage 2 (копирование файлов и запуск сервиса)
 FROM python:3.12-slim AS runtime
