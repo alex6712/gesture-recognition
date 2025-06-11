@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2 (копирование файлов, запуск)
-FROM nginx:stable-alpine
+FROM nginx:stable-alpine AS runtime
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
