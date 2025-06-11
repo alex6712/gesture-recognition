@@ -25,8 +25,9 @@ COPY protos/ ./protos/
 # Временно генерируется только hardcoded .proto-сервис.
 # Необходимо реализовать автоматизированную генерацию
 # связанных сервисов.
-RUN mkdir -p ./app/interservice_grpc/generated \
+RUN mkdir -p ./app/interservice_grpc/generated/v1 \
     && touch ./app/interservice_grpc/generated/__init__.py \
+    && touch ./app/interservice_grpc/generated/v1/__init__.py \
     && poetry run python -m grpc_tools.protoc \
       -I app/interservice_grpc/generated=protos \
       --python_out=. \

@@ -12,8 +12,6 @@ class RecognitionModelStub:
 
     Attributes
     ----------
-    channel : grpc.Channel
-        Канал связи с gRPC-сервером.
     stub : recognition_model_pb2_grpc.RecognitionModelStub
         Исполнитель запросов.
 
@@ -24,8 +22,9 @@ class RecognitionModelStub:
     """
 
     def __init__(self, host: str, port: int):
-        self.channel = grpc.insecure_channel(f"{host}:{port}")
-        self.stub = recognition_model_pb2_grpc.RecognitionModelStub(self.channel)
+        self.stub = recognition_model_pb2_grpc.RecognitionModelStub(
+            grpc.insecure_channel(f"{host}:{port}")
+        )
 
     async def health_check(self) -> recognition_model_pb2.StandardResponse:  # noqa
         """Получение ответа от gRPC-сервера модели.
