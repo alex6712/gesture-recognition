@@ -8,7 +8,7 @@ from interservice_grpc.generated.v1 import (
 
 
 class RecognitionModel(recognition_model_pb2_grpc.RecognitionModelServicer):
-    def HealthCheck(self, request, context):
+    def health_check(self, request, context):
         return recognition_model_pb2.StandardResponse(message="Model works!")  # noqa
 
 
